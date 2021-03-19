@@ -405,4 +405,8 @@ $(document).ready(function() {
       window.location.reload()
     })
   }
+
+  window.Spree.apiV2Authentication = {
+    'Authorization': 'Bearer ' + OAUTH_TOKEN,
+  }
 })
