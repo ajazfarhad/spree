@@ -62,6 +62,7 @@ module Spree
         end
       end
 
+      # FIXME: auto-expire this token
       def admin_oauth_token
         user = try_spree_current_user
         return unless user
