@@ -89,4 +89,10 @@ Spree.routes.countries_api_v2 = Spree.pathFor('api/v2/platform/countries')
 Spree.routes.option_types_api_v2 = Spree.pathFor('api/v2/platform/option_types')
 Spree.routes.option_values_api_v2 = Spree.pathFor('api/v2/platform/option_values')
 
-Spree.routes.users_api_2 = Spree.pathFor('api/v2/platform/users')
+Spree.routes.users_api_v2 = Spree.pathFor('api/v2/platform/users')
+
+Spree.apiV2Authentication = function() {
+  return {
+    'Authorization': 'Bearer ' + OAUTH_TOKEN
+  }
+}

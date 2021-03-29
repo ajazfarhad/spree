@@ -1,0 +1,188 @@
+---
+openapi: 3.0.1
+info:
+  title: Platform API V2
+  version: v2
+paths:
+  "/api/v2/platform/countries":
+    get:
+      summary: Returns a list of Countries
+      tags:
+      - Countries
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: countries returned
+          content:
+            application/json:
+              example:
+                data:
+                - id: '1'
+                  type: country
+                  attributes:
+                    iso_name: ISO_NAME_1
+                    iso: I1
+                    iso3: IS1
+                    name: NAME_1
+                    numcode: 840
+                    states_required: false
+                    updated_at: '2021-03-29T14:16:53.768Z'
+                    zipcode_required: true
+                  relationships:
+                    states:
+                      data: []
+                - id: '2'
+                  type: country
+                  attributes:
+                    iso_name: ISO_NAME_2
+                    iso: I2
+                    iso3: IS2
+                    name: NAME_2
+                    numcode: 840
+                    states_required: false
+                    updated_at: '2021-03-29T14:16:53.769Z'
+                    zipcode_required: true
+                  relationships:
+                    states:
+                      data: []
+                meta:
+                  count: 2
+                  total_count: 2
+                  total_pages: 1
+                links:
+                  self: http://www.example.com/api/v2/platform/countries
+                  next: http://www.example.com/api/v2/platform/countries?page=1
+                  prev: http://www.example.com/api/v2/platform/countries?page=1
+                  last: http://www.example.com/api/v2/platform/countries?page=1
+                  first: http://www.example.com/api/v2/platform/countries?page=1
+        '401':
+          description: authentication failed
+          content:
+            application/json:
+              example:
+                error: The access token is invalid
+  "/api/v2/platform/countries/{id}":
+    get:
+      summary: Returns a Country
+      tags:
+      - Countries
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Country found
+          content:
+            application/json:
+              example:
+                data:
+                  id: '1'
+                  type: country
+                  attributes:
+                    iso_name: ISO_NAME_3
+                    iso: I3
+                    iso3: IS3
+                    name: NAME_3
+                    numcode: 840
+                    states_required: false
+                    updated_at: '2021-03-29T14:16:53.916Z'
+                    zipcode_required: true
+                  relationships:
+                    states:
+                      data: []
+        '404':
+          description: Country not found
+          content:
+            application/json:
+              example:
+                error: The resource you were looking for could not be found.
+        '401':
+          description: authentication failed
+          content:
+            application/json:
+              example:
+                error: The access token is invalid
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+  schemas:
+    resources_list:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            allOf:
+            - "$ref": "#/components/schemas/resource_properties"
+        meta:
+          type: object
+          properties:
+            count:
+              type: integer
+            total_count:
+              type: integer
+            total_pages:
+              type: integer
+          required:
+          - count
+          - total_count
+          - total_pages
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next:
+              type: string
+            prev:
+              type: string
+            last:
+              type: string
+            first:
+              type: string
+          required:
+          - self
+          - next
+          - prev
+          - last
+          - first
+      required:
+      - data
+      - meta
+      - links
+    resource_properties:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        attributes:
+          type: object
+        relationships:
+          type: object
+      required:
+      - id
+      - type
+      - attributes
+      - relationships
+    resource:
+      type: object
+      properties:
+        data:
+          "$ref": "#/components/schemas/resource_properties"
+      required:
+      - data

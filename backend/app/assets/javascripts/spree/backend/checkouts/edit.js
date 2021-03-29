@@ -72,9 +72,9 @@ $.fn.customerAutocomplete = function() {
     minimumInputLength: 3,
     placeholder: Spree.translations.choose_a_customer,
     ajax: {
-      url: Spree.routes.users_api_2,
+      url: Spree.routes.users_api_v2,
       datatype: 'json',
-      headers: Spree.apiV2Authentication,
+      headers: Spree.apiV2Authentication(),
       data: function (params) {
         return {
           filter: {

@@ -8,7 +8,7 @@ function update_state(region, done) {
   var stateInput = $('#' + region + 'state input.state_name')
 
   fetch(Spree.routes.countries_api_v2 + '/' + countryId + '?include=states', {
-    headers: Spree.apiV2Authentication
+    headers: Spree.apiV2Authentication()
   }).then(function (response) {
     switch (response.status) {
       case 200:

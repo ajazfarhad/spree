@@ -7,7 +7,7 @@ $.fn.optionTypeAutocomplete = function () {
     ajax: {
       url: Spree.routes.option_types_api_v2,
       datatype: 'json',
-      headers: Spree.apiV2Authentication,
+      headers: Spree.apiV2Authentication(),
       data: function (params) {
         return {
           filter: {

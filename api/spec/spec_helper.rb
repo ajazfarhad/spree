@@ -42,6 +42,7 @@ require 'spree/api/testing_support/helpers'
 require 'spree/api/testing_support/setup'
 require 'spree/api/testing_support/v2/base'
 require 'spree/api/testing_support/v2/current_order'
+require 'spree/api/testing_support/v2/platform'
 
 
 RSpec.configure do |config|
