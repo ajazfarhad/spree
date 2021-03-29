@@ -105,7 +105,7 @@ RSpec.configure do |config|
   config.swagger_format = :yaml
 
   # auto generate examples based on response
-  config.after do |example|
+  config.after(type: :integration) do |example|
     next if response.nil?
 
     example.metadata[:response][:content] = {
