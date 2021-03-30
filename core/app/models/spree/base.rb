@@ -32,7 +32,7 @@ class Spree::Base < ApplicationRecord
   end
 
   def self.json_api_columns
-    column_names.reject { |c| c.match(/_id$|id|preferences|(.*)password|(.*)token/) }
+    column_names.reject { |c| c.match(/_id$|id|preferences|(.*)password|(.*)token|(.*)api_key/) }
   end
 
   def self.json_api_type

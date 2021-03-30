@@ -19,9 +19,9 @@ module Spree
             resource = model_class.new(permitted_resource_params)
 
             if resource.save
-              render_serialized_payload { serialize_resource(resource) }
+              render_serialized_payload(201) { serialize_resource(resource) }
             else
-              render_error_payload(resource.errors.full_messages)
+              render_error_payload(resource.errors)
             end
           end
 
